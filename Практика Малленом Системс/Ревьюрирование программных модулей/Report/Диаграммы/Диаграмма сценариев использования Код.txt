@@ -1,0 +1,25 @@
+@startuml
+left to right direction
+
+actor "Администратор" as admin
+actor "Пользователь" as user
+
+rectangle "Система отчётов" {
+  (Вход в систему) as login
+  (Создание отчёта) as create
+  (Экспорт данных) as export
+  (Настройка прав доступа) as perm
+}
+
+admin --> login
+admin --> create
+admin --> export
+admin --> perm
+
+user --> login
+user --> create
+user --> export
+
+create .includes.> (Выбор периода) : <<include>>
+create .includes.> (Формирование PDF) : <<include>>
+@enduml
